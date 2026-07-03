@@ -1,4 +1,4 @@
-package com.example.modid.proxy;
+package com.canoestudios.sofmenu.proxy;
 
 public class CommonProxy implements IProxy {
 }

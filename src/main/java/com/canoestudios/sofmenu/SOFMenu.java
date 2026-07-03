@@ -1,6 +1,6 @@
-package com.example.modid;
+package com.canoestudios.sofmenu;
 
-import com.example.modid.proxy.IProxy;
+import com.canoestudios.sofmenu.proxy.IProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -9,7 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
-public class ExampleMod {
+public class SOFMenu {
 
     public static final Logger LOGGER = LogManager.getLogger(Reference.MOD_NAME);
 
