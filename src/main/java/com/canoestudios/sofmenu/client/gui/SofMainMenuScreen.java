@@ -40,6 +40,20 @@ public class SofMainMenuScreen extends GuiScreen {
     private static final ResourceLocation BUTTON_MEDIUM_HOVER = texture("menu/buttons/button_medium_hover.png");
     private static final ResourceLocation BUTTON_SMALL = texture("menu/buttons/button_small.png");
     private static final ResourceLocation BUTTON_SMALL_HOVER = texture("menu/buttons/button_small_hover.png");
+    private static final ResourceLocation[] PRELOAD_TEXTURES = new ResourceLocation[] {
+            BLUEPRINT,
+            LOGO,
+            BUTTON_LARGE,
+            BUTTON_LARGE_HOVER,
+            BUTTON_MEDIUM,
+            BUTTON_MEDIUM_HOVER,
+            BUTTON_SMALL,
+            BUTTON_SMALL_HOVER,
+            BACKGROUNDS[0],
+            BACKGROUNDS[1],
+            BACKGROUNDS[2],
+            BACKGROUNDS[3]
+    };
 
     private static final int BUTTON_LAST_WORLD = 1000;
     private static final int BUTTON_SINGLEPLAYER = 1001;
@@ -219,6 +233,10 @@ public class SofMainMenuScreen extends GuiScreen {
 
     private static ResourceLocation texture(String path) {
         return new ResourceLocation("sofmenu", "textures/" + path);
+    }
+
+    public static ResourceLocation[] getPreloadTextures() {
+        return PRELOAD_TEXTURES.clone();
     }
 
     private static void openWebLink(URI uri) throws Exception {

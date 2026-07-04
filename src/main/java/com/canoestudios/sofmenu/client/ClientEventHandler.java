@@ -2,6 +2,7 @@ package com.canoestudios.sofmenu.client;
 
 import com.canoestudios.sofmenu.SOFMenu;
 import com.canoestudios.sofmenu.client.gui.SofMainMenuScreen;
+import com.canoestudios.sofmenu.client.resources.MenuTextureCache;
 import com.canoestudios.sofmenu.client.session.LastSessionStore;
 import com.canoestudios.sofmenu.client.window.WindowCustomizer;
 import net.minecraft.client.Minecraft;
@@ -21,6 +22,7 @@ public class ClientEventHandler {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onGuiOpen(GuiOpenEvent event) {
         if (event.getGui() instanceof GuiMainMenu && !(event.getGui() instanceof SofMainMenuScreen)) {
+            MenuTextureCache.schedulePreload();
             event.setGui(new SofMainMenuScreen());
         }
     }
@@ -35,8 +37,10 @@ public class ClientEventHandler {
         if (!this.windowCustomized) {
             this.windowCustomized = true;
             WindowCustomizer.apply(minecraft, SOFMenu.LOGGER);
+            MenuTextureCache.schedulePreload();
         }
 
+        MenuTextureCache.tick(minecraft, SOFMenu.LOGGER);
         LastSessionStore.recordCurrentSession(minecraft);
     }
 }
