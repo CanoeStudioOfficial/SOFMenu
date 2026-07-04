@@ -1,0 +1,427 @@
+type = menu
+
+customization-meta {
+  identifier = net.minecraft.client.gui.GuiMainMenu
+  randomgroup = 1
+  renderorder = background
+  randommode = false
+  randomonlyfirsttime = false
+}
+
+customization {
+  name = inforesources
+  action = setbackgroundslideshow
+}
+
+customization {
+  keepaspectratio = false
+  action = backgroundoptions
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_multiplayer_button%
+  orientation = top-left
+  x = 0
+  action = movebutton
+  y = 0
+  advanced_posx = {"placeholder":"elementposx","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}}
+  advanced_posy = {"placeholder":"calc","values":{"expression":"{"placeholder":"calc","values":{"expression":"{"placeholder":"elementheight","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}} * 2.2","decimal":"true"}} + {"placeholder":"elementposy","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}}","decimal":"true"}}
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_multiplayer_button%
+  width = 50
+  action = resizebutton
+  advanced_width = {"placeholder":"elementwidth","values":{"id":"6cbe403a-5290-4c01-86f5-738d201d43091746051172071"}}
+  height = 20
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_multiplayer_button%
+  loopbackgroundanimations = true
+  restartbackgroundanimations = true
+  action = setbuttontexture
+  backgroundhovered = config/fancymenu/additional_textures/button-large-hover.png
+  backgroundnormal = config/fancymenu/additional_textures/button-large.png
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_multiplayer_button%
+  path = config/fancymenu/additional_sounds/mainmenu_hover.wav
+  action = addhoversound
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_multiplayer_button%
+  seconds = 1.5
+  onlyfirsttime = true
+  fadein = true
+  fadeinspeed = 1.0
+  action = hidebuttonfor
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_options_button%
+  orientation = top-left
+  x = 0
+  action = movebutton
+  y = 0
+  advanced_posx = {"placeholder":"elementposx","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}}
+  advanced_posy = {"placeholder":"calc","values":{"expression":"{"placeholder":"calc","values":{"expression":"{"placeholder":"elementheight","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}} * 3.3","decimal":"true"}} + {"placeholder":"elementposy","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}}","decimal":"true"}}
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_options_button%
+  width = 50
+  action = resizebutton
+  advanced_width = {"placeholder":"calc","values":{"expression":"{"placeholder":"elementwidth","values":{"id":"6cbe403a-5290-4c01-86f5-738d201d43091746051172071"}} - 25","decimal":"true"}}
+  height = 20
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_options_button%
+  loopbackgroundanimations = true
+  restartbackgroundanimations = true
+  action = setbuttontexture
+  backgroundhovered = config/fancymenu/additional_textures/button-medium-hover.png
+  backgroundnormal = config/fancymenu/additional_textures/button-medium.png
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_options_button%
+  path = config/fancymenu/additional_sounds/mainmenu_hover.wav
+  action = addhoversound
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_options_button%
+  seconds = 2.0
+  onlyfirsttime = true
+  fadein = true
+  fadeinspeed = 1.0
+  action = hidebuttonfor
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_quit_button%
+  orientation = top-left
+  x = 0
+  action = movebutton
+  y = 0
+  advanced_posx = {"placeholder":"elementposx","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}}
+  advanced_posy = {"placeholder":"calc","values":{"expression":"{"placeholder":"calc","values":{"expression":"{"placeholder":"elementheight","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}} * 5.5","decimal":"true"}} + {"placeholder":"elementposy","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}}","decimal":"true"}}
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_quit_button%
+  width = 50
+  action = resizebutton
+  advanced_width = {"placeholder":"elementwidth","values":{"id":"6cbe403a-5290-4c01-86f5-738d201d43091746051172071"}}
+  height = 20
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_quit_button%
+  loopbackgroundanimations = true
+  restartbackgroundanimations = true
+  action = setbuttontexture
+  backgroundhovered = config/fancymenu/additional_textures/button-large-hover.png
+  backgroundnormal = config/fancymenu/additional_textures/button-large.png
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_quit_button%
+  path = config/fancymenu/additional_sounds/mainmenu_hover.wav
+  action = addhoversound
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_quit_button%
+  action = sethoverlabel
+  label = {"placeholder":"local","values":{"key":"dwm.fm.quitgame.choose"}}
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_quit_button%
+  seconds = 3.5
+  onlyfirsttime = true
+  fadein = true
+  fadeinspeed = 1.0
+  action = hidebuttonfor
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_language_button%
+  orientation = top-left
+  x = 0
+  action = movebutton
+  y = 0
+  advanced_posx = {"placeholder":"calc","values":{"expression":"{"placeholder":"elementposx","values":{"id":"vanillabtn:button_compatibility_id:mc_titlescreen_options_button"}} + {"placeholder":"elementwidth","values":{"id":"vanillabtn:button_compatibility_id:mc_titlescreen_options_button"}} + 4","decimal":"true"}}
+  advanced_posy = {"placeholder":"elementposy","values":{"id":"vanillabtn:button_compatibility_id:mc_titlescreen_options_button"}}
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_language_button%
+  loopbackgroundanimations = true
+  restartbackgroundanimations = true
+  action = setbuttontexture
+  backgroundhovered = config/fancymenu/additional_textures/button-small-hover.png
+  backgroundnormal = config/fancymenu/additional_textures/button-small.png
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_language_button%
+  path = config/fancymenu/additional_sounds/mainmenu_hover.wav
+  action = addhoversound
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_language_button%
+  seconds = 2.5
+  onlyfirsttime = true
+  fadein = true
+  fadeinspeed = 1.0
+  action = hidebuttonfor
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_singleplayer_button%
+  orientation = top-left
+  x = 0
+  action = movebutton
+  y = 0
+  advanced_posx = {"placeholder":"elementposx","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}}
+  advanced_posy = {"placeholder":"calc","values":{"expression":"{"placeholder":"calc","values":{"expression":"{"placeholder":"elementheight","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}} * 1.1","decimal":"true"}} + {"placeholder":"elementposy","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}}","decimal":"true"}}
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_singleplayer_button%
+  loopbackgroundanimations = true
+  restartbackgroundanimations = true
+  action = setbuttontexture
+  backgroundhovered = config/fancymenu/additional_textures/button-large-hover.png
+  backgroundnormal = config/fancymenu/additional_textures/button-large.png
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_singleplayer_button%
+  path = config/fancymenu/additional_sounds/mainmenu_hover.wav
+  action = addhoversound
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_singleplayer_button%
+  seconds = 1.0
+  onlyfirsttime = true
+  fadein = true
+  fadeinspeed = 1.0
+  action = hidebuttonfor
+}
+
+customization {
+  identifier = %id=button_compatibility_id:forge_titlescreen_mods_button%
+  orientation = top-left
+  x = 0
+  action = movebutton
+  y = 0
+  advanced_posx = {"placeholder":"elementposx","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}}
+  advanced_posy = {"placeholder":"calc","values":{"expression":"{"placeholder":"calc","values":{"expression":"{"placeholder":"elementheight","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}} * 4.4","decimal":"true"}} + {"placeholder":"elementposy","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}}","decimal":"true"}}
+}
+
+customization {
+  identifier = %id=button_compatibility_id:forge_titlescreen_mods_button%
+  width = 50
+  action = resizebutton
+  advanced_width = {"placeholder":"elementwidth","values":{"id":"6cbe403a-5290-4c01-86f5-738d201d43091746051172071"}}
+  height = 20
+}
+
+customization {
+  identifier = %id=button_compatibility_id:forge_titlescreen_mods_button%
+  loopbackgroundanimations = true
+  restartbackgroundanimations = true
+  action = setbuttontexture
+  backgroundhovered = config/fancymenu/additional_textures/button-large-hover.png
+  backgroundnormal = config/fancymenu/additional_textures/button-large.png
+}
+
+customization {
+  identifier = %id=button_compatibility_id:forge_titlescreen_mods_button%
+  path = config/fancymenu/additional_sounds/mainmenu_hover.wav
+  action = addhoversound
+}
+
+customization {
+  identifier = %id=button_compatibility_id:forge_titlescreen_mods_button%
+  seconds = 3.0
+  onlyfirsttime = true
+  fadein = true
+  fadeinspeed = 1.0
+  action = hidebuttonfor
+}
+
+customization {
+  orientation = top-left
+  hidden = true
+  x = 106
+  width = 268
+  action = deep_customization_element:title_screen_forge_top
+  actionid = 4a90e297-e9a3-4a73-b5ed-12c48e21286b1746050878007
+  y = 4
+  height = 19
+}
+
+customization {
+  orientation = top-left
+  hidden = true
+  x = 2
+  width = 161
+  action = deep_customization_element:title_screen_branding
+  actionid = 9a87aa6c-1d15-46d0-aaf1-01138e6cc3291746050878020
+  y = 213
+  height = 50
+}
+
+customization {
+  orientation = top-left
+  hidden = true
+  x = 251
+  width = 228
+  action = deep_customization_element:title_screen_forge_copyright
+  actionid = d6d9ae1d-61c0-4454-8655-bb6a1437f12e1746050878020
+  y = 245
+  height = 9
+}
+
+customization {
+  orientation = top-left
+  hidden = true
+  x = 274
+  width = 13
+  action = deep_customization_element:title_screen_realms_notification
+  actionid = f164caf5-1357-4caa-850c-747410c160851746050878020
+  y = 164
+  height = 13
+}
+
+customization {
+  orientation = top-left
+  hidden = true
+  x = 103
+  width = 274
+  action = deep_customization_element:title_screen_logo
+  actionid = 1cd0d513-998f-4496-96b2-cdaa884de8ec1746050878021
+  y = 30
+  height = 52
+}
+
+customization {
+  orientation = top-centered
+  splash_color = #ffff00
+  hidden = true
+  x = -175
+  width = 60
+  splash_rotation = -20
+  action = deep_customization_element:title_screen_splash
+  actionid = c419e2bb-4c37-4823-b12b-cad362488e291746050878021
+  y = 62
+  splash_file_path = resources/menu/splashes.txt
+  height = 30
+}
+
+customization {
+  advanced_height = {"placeholder":"guiheight"}
+  path = config/fancymenu/additional_textures/blueprint-texture.png
+  orientation = top-left
+  x = 0
+  width = 50
+  actionid = fb79275f-9140-476e-98f4-81dcf580ee191746068282217
+  action = addtexture
+  y = 0
+  advanced_posx = {"placeholder":"calc","values":{"expression":"{"placeholder":"guiwidth"} - {"placeholder":"elementwidth","values":{"id":"fb79275f-9140-476e-98f4-81dcf580ee191746068282217"}}","decimal":"true"}}
+  advanced_width = {"placeholder":"guiheight"}
+  height = 50
+}
+
+customization {
+  advanced_height = {"placeholder":"calc","values":{"expression":"{"placeholder":"guiheight"} * 0.5","decimal":"true"}}
+  path = config/fancymenu/additional_textures/logo.png
+  orientation = top-left
+  x = 0
+  width = 50
+  actionid = 6cbe403a-5290-4c01-86f5-738d201d43091746051172071
+  action = addtexture
+  y = 0
+  advanced_posx = {"placeholder":"calc","values":{"expression":"{"placeholder":"elementposx","values":{"id":"fb79275f-9140-476e-98f4-81dcf580ee191746068282217"}} + {"placeholder":"calc","values":{"expression":"{"placeholder":"elementwidth","values":{"id":"fb79275f-9140-476e-98f4-81dcf580ee191746068282217"}} * 0.6","decimal":"true"}} - {"placeholder":"calc","values":{"expression":"{"placeholder":"elementwidth","values":{"id":"6cbe403a-5290-4c01-86f5-738d201d43091746051172071"}} / 2","decimal":"true"}}","decimal":"true"}}
+  advanced_width = {"placeholder":"calc","values":{"expression":"{"placeholder":"guiheight"} * 0.5","decimal":"true"}}
+  advanced_posy = {"placeholder":"calc","values":{"expression":"{"placeholder":"elementheight","values":{"id":"6cbe403a-5290-4c01-86f5-738d201d43091746051172071"}} * -0.17","decimal":"true"}}
+  height = 50
+}
+
+customization {
+  orientation = top-left
+  basecolor = #FFFFFF
+  shadow = false
+  rotation = 0.0
+  scale = 0.8
+  refresh = true
+  advanced_posx = {"placeholder":"calc","values":{"expression":"{"placeholder":"calc","values":{"expression":"{"placeholder":"elementwidth","values":{"id":"6cbe403a-5290-4c01-86f5-738d201d43091746051172071"}} / 3","decimal":"true"}} + {"placeholder":"elementposx","values":{"id":"6cbe403a-5290-4c01-86f5-738d201d43091746051172071"}}","decimal":"true"}}
+  advanced_posy = {"placeholder":"calc","values":{"expression":"{"placeholder":"elementheight","values":{"id":"6cbe403a-5290-4c01-86f5-738d201d43091746051172071"}} + {"placeholder":"elementposy","values":{"id":"6cbe403a-5290-4c01-86f5-738d201d43091746051172071"}} - 5","decimal":"true"}}
+  bouncing = true
+  vanilla-like = false
+  x = 0
+  actionid = b9b97eb9-be01-4d47-9185-7d4b32ab919b1746051766526
+  action = addsplash
+  y = 0
+}
+
+customization {
+  hoversound = config/fancymenu/additional_sounds/mainmenu_hover.wav
+  orientation = top-left
+  restartbackgroundanimations = true
+  delayappearanceseconds = 0.5
+  buttonaction = join_last_world%btnaction_splitter_fm%
+  backgroundhovered = config/fancymenu/additional_textures/button-large-hover.png
+  label = {"placeholder":"local","values":{"key":"dwm.fm.lls"}}
+  advanced_posx = {"placeholder":"elementposx","values":{"id":"6cbe403a-5290-4c01-86f5-738d201d43091746051172071"}}
+  advanced_width = {"placeholder":"elementwidth","values":{"id":"6cbe403a-5290-4c01-86f5-738d201d43091746051172071"}}
+  advanced_posy = {"placeholder":"calc","values":{"expression":"{"placeholder":"elementheight","values":{"id":"6cbe403a-5290-4c01-86f5-738d201d43091746051172071"}} + {"placeholder":"elementposy","values":{"id":"6cbe403a-5290-4c01-86f5-738d201d43091746051172071"}} + 10","decimal":"true"}}
+  loopbackgroundanimations = true
+  fadein = true
+  fadeinspeed = 1.0
+  x = 0
+  width = 176
+  action = addbutton
+  actionid = 8c33691f-61fd-4883-be49-98a0c766e0e41746070183294
+  y = 0
+  delayappearance = true
+  backgroundnormal = config/fancymenu/additional_textures/button-large.png
+  delayappearanceeverytime = false
+  height = 20
+}
+
+customization {
+  hoversound = config/fancymenu/additional_sounds/mainmenu_hover.wav
+  orientation = top-left
+  restartbackgroundanimations = true
+  buttonaction = openlink;https://github.com/CanoeStudioOfficial/Destiny-Winds-Drifter-s-Chronicle;%btnaction_splitter_fm%
+  backgroundhovered = config/fancymenu/additional_textures/button-large-hover.png
+  label = {"placeholder":"local","values":{"key":"dwm.fm.web"}}
+  advanced_posx = {"placeholder":"elementposx","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}}
+  advanced_width = {"placeholder":"elementwidth","values":{"id":"6cbe403a-5290-4c01-86f5-738d201d43091746051172071"}}
+  advanced_posy = {"placeholder":"calc","values":{"expression":"{"placeholder":"calc","values":{"expression":"{"placeholder":"elementheight","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}} * 6.6","decimal":"true"}} + {"placeholder":"elementposy","values":{"id":"8c33691f-61fd-4883-be49-98a0c766e0e41746070183294"}}","decimal":"true"}}
+  loopbackgroundanimations = true
+  x = 0
+  width = 176
+  action = addbutton
+  actionid = 7297b084-d922-4e9a-93d7-6c740d2cc8dd1746269881152
+  y = 0
+  backgroundnormal = config/fancymenu/additional_textures/button-large.png
+  height = 20
+}
+
+customization {
+  identifier = %id=button_compatibility_id:mc_titlescreen_realms_button%
+  action = hidebutton
+}
+

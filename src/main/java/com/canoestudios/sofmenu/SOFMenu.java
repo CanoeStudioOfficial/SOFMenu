@@ -1,7 +1,10 @@
 package com.canoestudios.sofmenu;
 
+import com.canoestudios.sofmenu.client.ClientEventHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,7 +20,11 @@ public class SOFMenu {
      */
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        LOGGER.info("Hello From {}!", Tags.MOD_NAME);
+        LOGGER.info("Loading {}.", Tags.MOD_NAME);
+
+        if (event.getSide() == Side.CLIENT) {
+            MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
+        }
     }
 
 }
