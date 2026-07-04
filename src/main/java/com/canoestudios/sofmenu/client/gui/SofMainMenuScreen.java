@@ -21,7 +21,6 @@ import org.lwjgl.opengl.GL11;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
-import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class SofMainMenuScreen extends GuiScreen {
@@ -67,17 +66,11 @@ public class SofMainMenuScreen extends GuiScreen {
 
     private static final String MOJANG_COPYRIGHT = "Copyright Mojang AB. Do not distribute!";
     private static final String WEB_URL = "https://github.com/CanoeStudioOfficial/Destiny-Winds-Drifter-s-Chronicle";
-    private static final String[] SPLASHES = new String[] {
-            "Survival - Origin & Future",
-            "Destiny Winds",
-            "Drifter's Chronicle"
-    };
     private static boolean playedFirstAppearance;
 
     private final long screenOpenedAt;
     private final long backgroundStartedAt;
     private final boolean animateIntro;
-    private final String splash;
 
     private Layout layout;
 
@@ -86,7 +79,6 @@ public class SofMainMenuScreen extends GuiScreen {
         this.backgroundStartedAt = this.screenOpenedAt;
         this.animateIntro = !playedFirstAppearance;
         playedFirstAppearance = true;
-        this.splash = SPLASHES[new Random().nextInt(SPLASHES.length)];
     }
 
     @Override
@@ -172,7 +164,6 @@ public class SofMainMenuScreen extends GuiScreen {
         drawSlideshowBackground();
         drawTexturedQuad(BLUEPRINT, this.layout.panelX, 0, this.layout.panelSize, this.layout.panelSize, 1.0F);
         drawTexturedQuad(LOGO, this.layout.logoX, this.layout.logoY, this.layout.logoSize, this.layout.logoSize, 1.0F);
-        drawSplash();
 
         super.drawScreen(mouseX, mouseY, partialTicks);
         drawString(this.fontRenderer, MOJANG_COPYRIGHT,
@@ -208,18 +199,6 @@ public class SofMainMenuScreen extends GuiScreen {
         if (fade > 0.0F) {
             drawTexturedQuad(BACKGROUNDS[(slide + 1) % BACKGROUNDS.length], 0, 0, this.width, this.height, fade);
         }
-    }
-
-    private void drawSplash() {
-        float pulse = 1.0F + MathHelper.sin((Minecraft.getSystemTime() % 1000L) / 1000.0F * 6.2831855F) * 0.06F;
-        float scale = 0.8F * pulse;
-
-        GL11.glPushMatrix();
-        GL11.glTranslatef(this.layout.splashX, this.layout.splashY, 0.0F);
-        GL11.glRotatef(-20.0F, 0.0F, 0.0F, 1.0F);
-        GL11.glScalef(scale, scale, scale);
-        drawCenteredString(this.fontRenderer, this.splash, 0, 0, 0xFFFF00);
-        GL11.glPopMatrix();
     }
 
     private static void drawTexturedQuad(ResourceLocation texture, int x, int y, int width, int height, float alpha) {
@@ -262,19 +241,14 @@ public class SofMainMenuScreen extends GuiScreen {
         final int logoY;
         final int logoSize;
         final int firstButtonY;
-        final int splashX;
-        final int splashY;
 
-        private Layout(int panelX, int panelSize, int logoX, int logoY, int logoSize, int firstButtonY,
-                int splashX, int splashY) {
+        private Layout(int panelX, int panelSize, int logoX, int logoY, int logoSize, int firstButtonY) {
             this.panelX = panelX;
             this.panelSize = panelSize;
             this.logoX = logoX;
             this.logoY = logoY;
             this.logoSize = logoSize;
             this.firstButtonY = firstButtonY;
-            this.splashX = splashX;
-            this.splashY = splashY;
         }
 
         static Layout create(int screenWidth, int screenHeight) {
@@ -289,9 +263,7 @@ public class SofMainMenuScreen extends GuiScreen {
             if (bottom > screenHeight - 6) {
                 firstButtonY -= bottom - (screenHeight - 6);
             }
-            int splashX = logoX + logoSize / 3;
-            int splashY = logoY + logoSize - 5;
-            return new Layout(panelX, panelSize, logoX, logoY, logoSize, firstButtonY, splashX, splashY);
+            return new Layout(panelX, panelSize, logoX, logoY, logoSize, firstButtonY);
         }
     }
 }
