@@ -7,6 +7,7 @@ import com.canoestudios.sofmenu.client.session.LastSessionStore;
 import com.canoestudios.sofmenu.client.window.WindowCustomizer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -21,10 +22,18 @@ public class ClientEventHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onGuiOpen(GuiOpenEvent event) {
-        if (event.getGui() instanceof GuiMainMenu && !(event.getGui() instanceof SofMainMenuScreen)) {
-            MenuTextureCache.schedulePreload();
-            event.setGui(new SofMainMenuScreen());
+        GuiScreen gui = event.getGui();
+        if (!(gui instanceof GuiMainMenu) || gui instanceof SofMainMenuScreen) {
+            return;
         }
+
+        Minecraft minecraft = Minecraft.getMinecraft();
+        if (!isCleanTitleState(minecraft)) {
+            return;
+        }
+
+        MenuTextureCache.schedulePreload();
+        event.setGui(new SofMainMenuScreen());
     }
 
     @SubscribeEvent
@@ -42,5 +51,9 @@ public class ClientEventHandler {
 
         MenuTextureCache.tick(minecraft, SOFMenu.LOGGER);
         LastSessionStore.recordCurrentSession(minecraft);
+    }
+
+    private static boolean isCleanTitleState(Minecraft minecraft) {
+        return minecraft.world == null && minecraft.player == null && !minecraft.isIntegratedServerRunning();
     }
 }

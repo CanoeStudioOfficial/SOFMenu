@@ -2,9 +2,9 @@ package com.canoestudios.sofmenu.client.session;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiWorldSelection;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
-import net.minecraft.world.WorldSettings;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -42,18 +42,16 @@ public final class LastSessionStore {
         Minecraft minecraft = Minecraft.getMinecraft();
         load(minecraft);
 
-        if (cachedTarget.isEmpty()) {
-            minecraft.displayGuiScreen(new net.minecraft.client.gui.GuiWorldSelection(parent));
+        if (cachedTarget.isEmpty() || !isCleanTitleState(minecraft)) {
+            minecraft.displayGuiScreen(new GuiWorldSelection(parent));
             return;
         }
 
         if (cachedServer) {
             ServerData serverData = new ServerData(cachedTarget, cachedTarget, false);
             minecraft.displayGuiScreen(new GuiConnecting(parent, minecraft, serverData));
-        } else if (minecraft.getSaveLoader().canLoadWorld(cachedTarget)) {
-            minecraft.launchIntegratedServer(cachedTarget, cachedTarget, (WorldSettings) null);
         } else {
-            minecraft.displayGuiScreen(new net.minecraft.client.gui.GuiWorldSelection(parent));
+            minecraft.displayGuiScreen(new GuiWorldSelection(parent));
         }
     }
 
@@ -112,5 +110,9 @@ public final class LastSessionStore {
 
     private static File getStoreFile(Minecraft minecraft) {
         return new File(new File(minecraft.gameDir, "mods/sofmenu"), "last_session.properties");
+    }
+
+    private static boolean isCleanTitleState(Minecraft minecraft) {
+        return minecraft.world == null && minecraft.player == null && !minecraft.isIntegratedServerRunning();
     }
 }

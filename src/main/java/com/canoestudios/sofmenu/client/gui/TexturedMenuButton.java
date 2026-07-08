@@ -1,12 +1,11 @@
 package com.canoestudios.sofmenu.client.gui;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -14,8 +13,6 @@ import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class TexturedMenuButton extends GuiButton {
-
-    private static final ResourceLocation HOVER_SOUND = new ResourceLocation("sofmenu", "menu.mainmenu_hover");
 
     private final ResourceLocation normalTexture;
     private final ResourceLocation hoverTexture;
@@ -49,8 +46,7 @@ public class TexturedMenuButton extends GuiButton {
         this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
 
         if (this.hovered && !this.wasHovered && alpha >= 1.0F) {
-            minecraft.getSoundHandler().playSound(new PositionedSoundRecord(HOVER_SOUND, SoundCategory.MASTER,
-                    0.45F, 1.0F, false, 0, ISound.AttenuationType.NONE, 0.0F, 0.0F, 0.0F));
+            minecraft.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0F));
         }
         this.wasHovered = this.hovered;
 
