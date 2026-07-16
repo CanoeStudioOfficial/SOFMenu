@@ -30,23 +30,19 @@ public class SofMainMenuScreen extends GuiScreen {
             texture("menu/backgrounds/image_03.png"),
             texture("menu/backgrounds/image_04.png")
     };
-    private static final ResourceLocation BLUEPRINT = texture("menu/blueprint_texture.png");
-    private static final ResourceLocation LOGO = texture("menu/logo.png");
-    private static final ResourceLocation BUTTON_LARGE = texture("menu/buttons/button_large.png");
-    private static final ResourceLocation BUTTON_LARGE_HOVER = texture("menu/buttons/button_large_hover.png");
-    private static final ResourceLocation BUTTON_MEDIUM = texture("menu/buttons/button_medium.png");
-    private static final ResourceLocation BUTTON_MEDIUM_HOVER = texture("menu/buttons/button_medium_hover.png");
-    private static final ResourceLocation BUTTON_SMALL = texture("menu/buttons/button_small.png");
-    private static final ResourceLocation BUTTON_SMALL_HOVER = texture("menu/buttons/button_small_hover.png");
+    private static final ResourceLocation SOF_LOGO = texture("menu/sof_logo_full.png");
+    private static final ResourceLocation INFO_BOOK = texture("menu/info_menu_book.png");
+    private static final ResourceLocation BUTTON_LONG = texture("menu/buttons/longbutton_normal.png");
+    private static final ResourceLocation BUTTON_LONG_HOVER = texture("menu/buttons/longbutton_hover.png");
+    private static final ResourceLocation BUTTON_SHORT = texture("menu/buttons/shortbutton_normal.png");
+    private static final ResourceLocation BUTTON_SHORT_HOVER = texture("menu/buttons/shortbutton_hover.png");
     private static final ResourceLocation[] PRELOAD_TEXTURES = new ResourceLocation[] {
-            BLUEPRINT,
-            LOGO,
-            BUTTON_LARGE,
-            BUTTON_LARGE_HOVER,
-            BUTTON_MEDIUM,
-            BUTTON_MEDIUM_HOVER,
-            BUTTON_SMALL,
-            BUTTON_SMALL_HOVER,
+            SOF_LOGO,
+            INFO_BOOK,
+            BUTTON_LONG,
+            BUTTON_LONG_HOVER,
+            BUTTON_SHORT,
+            BUTTON_SHORT_HOVER,
             BACKGROUNDS[0],
             BACKGROUNDS[1],
             BACKGROUNDS[2],
@@ -85,23 +81,25 @@ public class SofMainMenuScreen extends GuiScreen {
         this.layout = Layout.create(this.width, this.height);
         this.buttonList.clear();
 
-        addTexturedButton(BUTTON_LAST_WORLD, this.layout.logoX, this.layout.firstButtonY, this.layout.logoSize, 20,
-                I18n.format("dwm.fm.lls"), BUTTON_LARGE, BUTTON_LARGE_HOVER, 0.5F);
-        addTexturedButton(BUTTON_SINGLEPLAYER, this.layout.logoX, rowY(1.1F), this.layout.logoSize, 20,
-                I18n.format("dwm.fm.mp"), BUTTON_LARGE, BUTTON_LARGE_HOVER, 1.0F);
-        addTexturedButton(BUTTON_MULTIPLAYER, this.layout.logoX, rowY(2.2F), this.layout.logoSize, 20,
-                I18n.format("dwm.fm.sp"), BUTTON_LARGE, BUTTON_LARGE_HOVER, 1.5F);
-        addTexturedButton(BUTTON_OPTIONS, this.layout.logoX, rowY(3.3F), this.layout.logoSize - 25, 20,
-                I18n.format("menu.options"), BUTTON_MEDIUM, BUTTON_MEDIUM_HOVER, 2.0F);
-        addTexturedButton(BUTTON_LANGUAGE, this.layout.logoX + this.layout.logoSize - 21, rowY(3.3F), 20, 20,
-                "", BUTTON_SMALL, BUTTON_SMALL_HOVER, 2.5F);
-        addTexturedButton(BUTTON_MODS, this.layout.logoX, rowY(4.4F), this.layout.logoSize, 20,
-                I18n.format("dwm.fm.mods"), BUTTON_LARGE, BUTTON_LARGE_HOVER, 3.0F);
-        addTexturedButton(BUTTON_QUIT, this.layout.logoX, rowY(5.5F), this.layout.logoSize, 20,
-                I18n.format("dwm.fm.quitgame"), BUTTON_LARGE, BUTTON_LARGE_HOVER, 3.5F)
+        int longX = this.layout.buttonX + (this.layout.optionRowWidth - this.layout.longButtonWidth) / 2;
+        addTexturedButton(BUTTON_LAST_WORLD, longX, rowY(0), this.layout.longButtonWidth, this.layout.buttonHeight,
+                I18n.format("dwm.fm.lls"), BUTTON_LONG, BUTTON_LONG_HOVER, 0.35F);
+        addTexturedButton(BUTTON_SINGLEPLAYER, longX, rowY(1), this.layout.longButtonWidth, this.layout.buttonHeight,
+                I18n.format("dwm.fm.mp"), BUTTON_LONG, BUTTON_LONG_HOVER, 0.65F);
+        addTexturedButton(BUTTON_MULTIPLAYER, longX, rowY(2), this.layout.longButtonWidth, this.layout.buttonHeight,
+                I18n.format("dwm.fm.sp"), BUTTON_LONG, BUTTON_LONG_HOVER, 0.95F);
+        addTexturedButton(BUTTON_MODS, longX, rowY(3), this.layout.longButtonWidth, this.layout.buttonHeight,
+                I18n.format("dwm.fm.mods"), BUTTON_LONG, BUTTON_LONG_HOVER, 1.25F);
+        addTexturedButton(BUTTON_OPTIONS, this.layout.buttonX, rowY(4), this.layout.longButtonWidth,
+                this.layout.buttonHeight, I18n.format("menu.options"), BUTTON_LONG, BUTTON_LONG_HOVER, 1.55F);
+        addTexturedButton(BUTTON_LANGUAGE, this.layout.buttonX + this.layout.longButtonWidth + this.layout.smallButtonGap,
+                rowY(4), this.layout.shortButtonWidth, this.layout.buttonHeight, I18n.format("dwm.fm.lang.short"),
+                BUTTON_SHORT, BUTTON_SHORT_HOVER, 1.85F);
+        addTexturedButton(BUTTON_WEB, longX, rowY(5), this.layout.longButtonWidth, this.layout.buttonHeight,
+                I18n.format("dwm.fm.web"), BUTTON_LONG, BUTTON_LONG_HOVER, 2.15F);
+        addTexturedButton(BUTTON_QUIT, longX, rowY(6), this.layout.longButtonWidth, this.layout.buttonHeight,
+                I18n.format("dwm.fm.quitgame"), BUTTON_LONG, BUTTON_LONG_HOVER, 2.45F)
                 .setHoverLabel(I18n.format("dwm.fm.quitgame.choose"));
-        addTexturedButton(BUTTON_WEB, this.layout.logoX, rowY(6.6F), this.layout.logoSize, 20,
-                I18n.format("dwm.fm.web"), BUTTON_LARGE, BUTTON_LARGE_HOVER, 0.0F);
     }
 
     @Override
@@ -161,8 +159,11 @@ public class SofMainMenuScreen extends GuiScreen {
         }
 
         drawSlideshowBackground();
-        drawTexturedQuad(BLUEPRINT, this.layout.panelX, 0, this.layout.panelSize, this.layout.panelSize, 1.0F);
-        drawTexturedQuad(LOGO, this.layout.logoX, this.layout.logoY, this.layout.logoSize, this.layout.logoSize, 1.0F);
+        drawRect(0, 0, this.width, this.height, 0xB8000000);
+        drawTexturedQuad(SOF_LOGO, this.layout.logoX, this.layout.logoY, this.layout.logoSize, this.layout.logoSize,
+                getIntroAlpha(0.0F));
+        drawTexturedQuad(INFO_BOOK, this.layout.bookX, this.layout.bookY, this.layout.bookWidth,
+                this.layout.bookHeight, getIntroAlpha(0.15F));
 
         super.drawScreen(mouseX, mouseY, partialTicks);
         drawString(this.fontRenderer, MOJANG_COPYRIGHT,
@@ -182,8 +183,17 @@ public class SofMainMenuScreen extends GuiScreen {
         return button;
     }
 
-    private int rowY(float multiplier) {
-        return this.layout.firstButtonY + Math.round(20.0F * multiplier);
+    private int rowY(int row) {
+        return this.layout.firstButtonY + row * (this.layout.buttonHeight + this.layout.buttonGap);
+    }
+
+    private float getIntroAlpha(float delaySeconds) {
+        if (!this.animateIntro) {
+            return 1.0F;
+        }
+
+        float seconds = (Minecraft.getSystemTime() - this.screenOpenedAt) / 1000.0F;
+        return MathHelper.clamp((seconds - delaySeconds) * 1.35F, 0.0F, 1.0F);
     }
 
     private void drawSlideshowBackground() {
@@ -234,35 +244,110 @@ public class SofMainMenuScreen extends GuiScreen {
     }
 
     private static class Layout {
-        final int panelX;
-        final int panelSize;
+        private static final float BOOK_ASPECT = 1200.0F / 794.0F;
+
         final int logoX;
         final int logoY;
         final int logoSize;
+        final int bookX;
+        final int bookY;
+        final int bookWidth;
+        final int bookHeight;
+        final int buttonX;
         final int firstButtonY;
+        final int longButtonWidth;
+        final int shortButtonWidth;
+        final int buttonHeight;
+        final int buttonGap;
+        final int smallButtonGap;
+        final int optionRowWidth;
 
-        private Layout(int panelX, int panelSize, int logoX, int logoY, int logoSize, int firstButtonY) {
-            this.panelX = panelX;
-            this.panelSize = panelSize;
+        private Layout(int logoX, int logoY, int logoSize, int bookX, int bookY, int bookWidth, int bookHeight,
+                int buttonX, int firstButtonY, int longButtonWidth, int shortButtonWidth, int buttonHeight,
+                int buttonGap, int smallButtonGap, int optionRowWidth) {
             this.logoX = logoX;
             this.logoY = logoY;
             this.logoSize = logoSize;
+            this.bookX = bookX;
+            this.bookY = bookY;
+            this.bookWidth = bookWidth;
+            this.bookHeight = bookHeight;
+            this.buttonX = buttonX;
             this.firstButtonY = firstButtonY;
+            this.longButtonWidth = longButtonWidth;
+            this.shortButtonWidth = shortButtonWidth;
+            this.buttonHeight = buttonHeight;
+            this.buttonGap = buttonGap;
+            this.smallButtonGap = smallButtonGap;
+            this.optionRowWidth = optionRowWidth;
         }
 
         static Layout create(int screenWidth, int screenHeight) {
-            int panelSize = screenHeight;
-            int panelX = Math.max(0, screenWidth - panelSize);
-            int logoSize = MathHelper.clamp(screenHeight / 2, 118, Math.max(118, screenWidth - 16));
-            int logoX = panelX + Math.round(panelSize * 0.6F) - logoSize / 2;
-            logoX = MathHelper.clamp(logoX, 8, Math.max(8, screenWidth - logoSize - 8));
-            int logoY = Math.round(logoSize * -0.17F);
-            int firstButtonY = logoY + logoSize + 10;
-            int bottom = firstButtonY + Math.round(20.0F * 6.6F) + 20;
-            if (bottom > screenHeight - 6) {
-                firstButtonY -= bottom - (screenHeight - 6);
+            boolean wide = screenWidth >= 760;
+            int margin = 14;
+            int bookHeight;
+            int bookWidth;
+            int bookX;
+            int bookY;
+            int logoSize;
+            int logoX;
+            int logoY;
+
+            if (wide) {
+                bookHeight = MathHelper.clamp(Math.round(screenHeight * 0.72F), 245, 390);
+                bookWidth = Math.round(bookHeight * BOOK_ASPECT);
+                if (bookWidth > screenWidth - 260) {
+                    bookWidth = MathHelper.clamp(screenWidth - 260, 360, screenWidth - margin * 2);
+                    bookHeight = Math.round(bookWidth / BOOK_ASPECT);
+                }
+                bookX = screenWidth - bookWidth - margin;
+                bookY = (screenHeight - bookHeight) / 2;
+
+                int logoSpace = Math.max(140, bookX - margin * 2);
+                logoSize = MathHelper.clamp(Math.min(Math.round(screenHeight * 0.56F), logoSpace), 145, 380);
+                logoX = Math.max(margin, (bookX - logoSize) / 2);
+                logoY = MathHelper.clamp((screenHeight - logoSize) / 2 - Math.round(screenHeight * 0.02F), 8,
+                        Math.max(8, screenHeight - logoSize - 18));
+            } else {
+                logoSize = MathHelper.clamp(Math.round(screenWidth * 0.62F), 132, Math.max(132, screenHeight / 3));
+                logoX = (screenWidth - logoSize) / 2;
+                logoY = 8;
+
+                bookWidth = MathHelper.clamp(screenWidth - margin * 2, 300, 560);
+                bookHeight = Math.round(bookWidth / BOOK_ASPECT);
+                int availableBookHeight = screenHeight - logoY - logoSize + 8;
+                if (bookHeight > availableBookHeight) {
+                    bookHeight = MathHelper.clamp(availableBookHeight, 205, Math.max(205, screenHeight - 28));
+                    bookWidth = Math.round(bookHeight * BOOK_ASPECT);
+                }
+                bookX = (screenWidth - bookWidth) / 2;
+                bookY = MathHelper.clamp(screenHeight - bookHeight - 12, logoY + logoSize - 10,
+                        Math.max(logoY + logoSize - 10, screenHeight - bookHeight - 8));
             }
-            return new Layout(panelX, panelSize, logoX, logoY, logoSize, firstButtonY);
+
+            int longButtonWidth = MathHelper.clamp(Math.round(bookWidth * 0.225F), 96, 132);
+            int buttonHeight = MathHelper.clamp(Math.round(longButtonWidth * 20.0F / 108.0F), 18, 24);
+            int shortButtonWidth = MathHelper.clamp(Math.round(longButtonWidth * 51.0F / 108.0F), 46, 62);
+            int smallButtonGap = Math.max(4, Math.round(bookWidth * 0.012F));
+            int optionRowWidth = longButtonWidth + smallButtonGap + shortButtonWidth;
+            int buttonX = bookX + Math.round(bookWidth * 0.75F) - optionRowWidth / 2;
+            int firstButtonY = bookY + Math.round(bookHeight * 0.225F);
+            int pageBottom = bookY + Math.round(bookHeight * 0.845F);
+            int available = Math.max(120, pageBottom - firstButtonY);
+            int buttonGap = (available - buttonHeight * 7) / 6;
+
+            if (buttonGap < 2) {
+                buttonGap = 2;
+                buttonHeight = Math.max(16, (available - buttonGap * 6) / 7);
+            }
+
+            int lastButtonBottom = firstButtonY + buttonHeight * 7 + buttonGap * 6;
+            if (lastButtonBottom > pageBottom) {
+                firstButtonY -= lastButtonBottom - pageBottom;
+            }
+
+            return new Layout(logoX, logoY, logoSize, bookX, bookY, bookWidth, bookHeight, buttonX, firstButtonY,
+                    longButtonWidth, shortButtonWidth, buttonHeight, buttonGap, smallButtonGap, optionRowWidth);
         }
     }
 }
