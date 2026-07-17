@@ -65,6 +65,7 @@ public class TexturedMenuButton extends GuiButton {
         }
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glDisable(GL11.GL_BLEND);
     }
 
     private float getAppearanceAlpha() {
