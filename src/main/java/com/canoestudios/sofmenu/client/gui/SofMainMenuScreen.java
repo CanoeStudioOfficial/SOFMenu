@@ -30,19 +30,29 @@ public class SofMainMenuScreen extends GuiScreen {
             texture("menu/backgrounds/image_03.png"),
             texture("menu/backgrounds/image_04.png")
     };
-    private static final ResourceLocation SOF_LOGO = texture("menu/sof_logo_full.png");
     private static final ResourceLocation INFO_BOOK = texture("menu/info_menu_book.png");
     private static final ResourceLocation BUTTON_LONG = texture("menu/buttons/longbutton_normal.png");
     private static final ResourceLocation BUTTON_LONG_HOVER = texture("menu/buttons/longbutton_hover.png");
     private static final ResourceLocation BUTTON_SHORT = texture("menu/buttons/shortbutton_normal.png");
     private static final ResourceLocation BUTTON_SHORT_HOVER = texture("menu/buttons/shortbutton_hover.png");
+    private static final ResourceLocation STICKER_EARTH = texture("menu/stickers/earth.png");
+    private static final ResourceLocation STICKER_COOKIE = texture("menu/stickers/cookie.png");
+    private static final ResourceLocation STICKER_CAT = texture("menu/stickers/cat.png");
+    private static final ResourceLocation STICKER_BOOK_PEN = texture("menu/stickers/book_pen.png");
+    private static final ResourceLocation STICKER_SYNC_CHECK = texture("menu/stickers/sync_check.png");
+    private static final ResourceLocation STICKER_WIKI = texture("menu/stickers/wiki.png");
     private static final ResourceLocation[] PRELOAD_TEXTURES = new ResourceLocation[] {
-            SOF_LOGO,
             INFO_BOOK,
             BUTTON_LONG,
             BUTTON_LONG_HOVER,
             BUTTON_SHORT,
             BUTTON_SHORT_HOVER,
+            STICKER_EARTH,
+            STICKER_COOKIE,
+            STICKER_CAT,
+            STICKER_BOOK_PEN,
+            STICKER_SYNC_CHECK,
+            STICKER_WIKI,
             BACKGROUNDS[0],
             BACKGROUNDS[1],
             BACKGROUNDS[2],
@@ -81,7 +91,7 @@ public class SofMainMenuScreen extends GuiScreen {
         this.layout = Layout.create(this.width, this.height);
         this.buttonList.clear();
 
-        int longX = this.layout.buttonX + (this.layout.optionRowWidth - this.layout.longButtonWidth) / 2;
+        int longX = this.layout.buttonX;
         addTexturedButton(BUTTON_LAST_WORLD, longX, rowY(0), this.layout.longButtonWidth, this.layout.buttonHeight,
                 I18n.format("dwm.fm.lls"), BUTTON_LONG, BUTTON_LONG_HOVER, 0.35F);
         addTexturedButton(BUTTON_SINGLEPLAYER, longX, rowY(1), this.layout.longButtonWidth, this.layout.buttonHeight,
@@ -90,11 +100,11 @@ public class SofMainMenuScreen extends GuiScreen {
                 I18n.format("dwm.fm.sp"), BUTTON_LONG, BUTTON_LONG_HOVER, 0.95F);
         addTexturedButton(BUTTON_MODS, longX, rowY(3), this.layout.longButtonWidth, this.layout.buttonHeight,
                 I18n.format("dwm.fm.mods"), BUTTON_LONG, BUTTON_LONG_HOVER, 1.25F);
-        addTexturedButton(BUTTON_OPTIONS, this.layout.buttonX, rowY(4), this.layout.longButtonWidth,
+        addTexturedButton(BUTTON_OPTIONS, this.layout.buttonX, rowY(4), this.layout.optionButtonWidth,
                 this.layout.buttonHeight, I18n.format("menu.options"), BUTTON_LONG, BUTTON_LONG_HOVER, 1.55F);
-        addTexturedButton(BUTTON_LANGUAGE, this.layout.buttonX + this.layout.longButtonWidth + this.layout.smallButtonGap,
-                rowY(4), this.layout.shortButtonWidth, this.layout.buttonHeight, I18n.format("dwm.fm.lang.short"),
-                BUTTON_SHORT, BUTTON_SHORT_HOVER, 1.85F);
+        addTexturedButton(BUTTON_LANGUAGE, this.layout.buttonX + this.layout.optionButtonWidth
+                + this.layout.smallButtonGap, rowY(4), this.layout.shortButtonWidth, this.layout.buttonHeight,
+                I18n.format("dwm.fm.lang.short"), BUTTON_SHORT, BUTTON_SHORT_HOVER, 1.85F);
         addTexturedButton(BUTTON_WEB, longX, rowY(5), this.layout.longButtonWidth, this.layout.buttonHeight,
                 I18n.format("dwm.fm.web"), BUTTON_LONG, BUTTON_LONG_HOVER, 2.15F);
         addTexturedButton(BUTTON_QUIT, longX, rowY(6), this.layout.longButtonWidth, this.layout.buttonHeight,
@@ -160,10 +170,9 @@ public class SofMainMenuScreen extends GuiScreen {
 
         drawSlideshowBackground();
         drawRect(0, 0, this.width, this.height, 0xB8000000);
-        drawTexturedQuad(SOF_LOGO, this.layout.logoX, this.layout.logoY, this.layout.logoSize, this.layout.logoSize,
-                getIntroAlpha(0.0F));
         drawTexturedQuad(INFO_BOOK, this.layout.bookX, this.layout.bookY, this.layout.bookWidth,
-                this.layout.bookHeight, getIntroAlpha(0.15F));
+                this.layout.bookHeight, getIntroAlpha(0.0F));
+        drawDecorativeStickers(getIntroAlpha(0.2F));
 
         super.drawScreen(mouseX, mouseY, partialTicks);
         drawString(this.fontRenderer, MOJANG_COPYRIGHT,
@@ -210,6 +219,24 @@ public class SofMainMenuScreen extends GuiScreen {
         }
     }
 
+    private void drawDecorativeStickers(float alpha) {
+        drawSticker(STICKER_EARTH, 0.620F, 0.205F, 0.092F, 1.25F, alpha);
+        drawSticker(STICKER_COOKIE, 0.805F, 0.200F, 0.090F, 1.0F, alpha);
+        drawSticker(STICKER_CAT, 0.625F, 0.405F, 0.118F, 1.25F, alpha);
+        drawSticker(STICKER_BOOK_PEN, 0.805F, 0.405F, 0.142F, 1.0F, alpha);
+        drawSticker(STICKER_SYNC_CHECK, 0.625F, 0.625F, 0.082F, 1.0F, alpha);
+        drawSticker(STICKER_WIKI, 0.805F, 0.625F, 0.118F, 1.0F, alpha);
+    }
+
+    private void drawSticker(ResourceLocation texture, float centerX, float centerY, float widthRatio,
+            float textureAspect, float alpha) {
+        int stickerWidth = Math.max(14, Math.round(this.layout.bookWidth * widthRatio));
+        int stickerHeight = Math.max(14, Math.round(stickerWidth / textureAspect));
+        int x = this.layout.bookX + Math.round(this.layout.bookWidth * centerX) - stickerWidth / 2;
+        int y = this.layout.bookY + Math.round(this.layout.bookHeight * centerY) - stickerHeight / 2;
+        drawTexturedQuad(texture, x, y, stickerWidth, stickerHeight, alpha);
+    }
+
     private static void drawTexturedQuad(ResourceLocation texture, int x, int y, int width, int height, float alpha) {
         Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, alpha);
@@ -246,9 +273,6 @@ public class SofMainMenuScreen extends GuiScreen {
     private static class Layout {
         private static final float BOOK_ASPECT = 1200.0F / 794.0F;
 
-        final int logoX;
-        final int logoY;
-        final int logoSize;
         final int bookX;
         final int bookY;
         final int bookWidth;
@@ -256,18 +280,15 @@ public class SofMainMenuScreen extends GuiScreen {
         final int buttonX;
         final int firstButtonY;
         final int longButtonWidth;
+        final int optionButtonWidth;
         final int shortButtonWidth;
         final int buttonHeight;
         final int buttonGap;
         final int smallButtonGap;
-        final int optionRowWidth;
 
-        private Layout(int logoX, int logoY, int logoSize, int bookX, int bookY, int bookWidth, int bookHeight,
-                int buttonX, int firstButtonY, int longButtonWidth, int shortButtonWidth, int buttonHeight,
-                int buttonGap, int smallButtonGap, int optionRowWidth) {
-            this.logoX = logoX;
-            this.logoY = logoY;
-            this.logoSize = logoSize;
+        private Layout(int bookX, int bookY, int bookWidth, int bookHeight, int buttonX, int firstButtonY,
+                int longButtonWidth, int optionButtonWidth, int shortButtonWidth, int buttonHeight, int buttonGap,
+                int smallButtonGap) {
             this.bookX = bookX;
             this.bookY = bookY;
             this.bookWidth = bookWidth;
@@ -275,79 +296,66 @@ public class SofMainMenuScreen extends GuiScreen {
             this.buttonX = buttonX;
             this.firstButtonY = firstButtonY;
             this.longButtonWidth = longButtonWidth;
+            this.optionButtonWidth = optionButtonWidth;
             this.shortButtonWidth = shortButtonWidth;
             this.buttonHeight = buttonHeight;
             this.buttonGap = buttonGap;
             this.smallButtonGap = smallButtonGap;
-            this.optionRowWidth = optionRowWidth;
         }
 
         static Layout create(int screenWidth, int screenHeight) {
-            boolean wide = screenWidth >= 760;
-            int margin = 14;
-            int bookHeight;
-            int bookWidth;
-            int bookX;
-            int bookY;
-            int logoSize;
-            int logoX;
-            int logoY;
-
-            if (wide) {
-                bookHeight = MathHelper.clamp(Math.round(screenHeight * 0.72F), 245, 390);
-                bookWidth = Math.round(bookHeight * BOOK_ASPECT);
-                if (bookWidth > screenWidth - 260) {
-                    bookWidth = MathHelper.clamp(screenWidth - 260, 360, screenWidth - margin * 2);
-                    bookHeight = Math.round(bookWidth / BOOK_ASPECT);
-                }
-                bookX = screenWidth - bookWidth - margin;
-                bookY = (screenHeight - bookHeight) / 2;
-
-                int logoSpace = Math.max(140, bookX - margin * 2);
-                logoSize = MathHelper.clamp(Math.min(Math.round(screenHeight * 0.56F), logoSpace), 145, 380);
-                logoX = Math.max(margin, (bookX - logoSize) / 2);
-                logoY = MathHelper.clamp((screenHeight - logoSize) / 2 - Math.round(screenHeight * 0.02F), 8,
-                        Math.max(8, screenHeight - logoSize - 18));
-            } else {
-                logoSize = MathHelper.clamp(Math.round(screenWidth * 0.62F), 132, Math.max(132, screenHeight / 3));
-                logoX = (screenWidth - logoSize) / 2;
-                logoY = 8;
-
-                bookWidth = MathHelper.clamp(screenWidth - margin * 2, 300, 560);
+            int margin = 8;
+            int maxBookWidth = Math.max(220, screenWidth - margin * 2);
+            int maxBookHeight = Math.max(165, screenHeight - 28);
+            float heightFill = screenHeight < 380 ? 0.86F : 0.72F;
+            float widthFill = screenWidth < 560 ? 0.96F : 0.82F;
+            int bookHeight = MathHelper.clamp(Math.round(screenHeight * heightFill), Math.min(185, maxBookHeight),
+                    maxBookHeight);
+            int bookWidth = Math.round(bookHeight * BOOK_ASPECT);
+            int widthCap = Math.min(maxBookWidth, Math.round(screenWidth * widthFill));
+            if (bookWidth > widthCap) {
+                bookWidth = widthCap;
                 bookHeight = Math.round(bookWidth / BOOK_ASPECT);
-                int availableBookHeight = screenHeight - logoY - logoSize + 8;
-                if (bookHeight > availableBookHeight) {
-                    bookHeight = MathHelper.clamp(availableBookHeight, 205, Math.max(205, screenHeight - 28));
-                    bookWidth = Math.round(bookHeight * BOOK_ASPECT);
-                }
-                bookX = (screenWidth - bookWidth) / 2;
-                bookY = MathHelper.clamp(screenHeight - bookHeight - 12, logoY + logoSize - 10,
-                        Math.max(logoY + logoSize - 10, screenHeight - bookHeight - 8));
+            }
+            bookWidth = MathHelper.clamp(bookWidth, Math.min(300, maxBookWidth), maxBookWidth);
+            bookHeight = Math.round(bookWidth / BOOK_ASPECT);
+
+            if (bookHeight > maxBookHeight) {
+                bookHeight = maxBookHeight;
+                bookWidth = Math.round(bookHeight * BOOK_ASPECT);
             }
 
-            int longButtonWidth = MathHelper.clamp(Math.round(bookWidth * 0.225F), 96, 132);
-            int buttonHeight = MathHelper.clamp(Math.round(longButtonWidth * 20.0F / 108.0F), 18, 24);
-            int shortButtonWidth = MathHelper.clamp(Math.round(longButtonWidth * 51.0F / 108.0F), 46, 62);
-            int smallButtonGap = Math.max(4, Math.round(bookWidth * 0.012F));
-            int optionRowWidth = longButtonWidth + smallButtonGap + shortButtonWidth;
-            int buttonX = bookX + Math.round(bookWidth * 0.75F) - optionRowWidth / 2;
-            int firstButtonY = bookY + Math.round(bookHeight * 0.225F);
-            int pageBottom = bookY + Math.round(bookHeight * 0.845F);
-            int available = Math.max(120, pageBottom - firstButtonY);
-            int buttonGap = (available - buttonHeight * 7) / 6;
+            int bookX = (screenWidth - bookWidth) / 2;
+            int bookY = Math.max(6, (screenHeight - bookHeight) / 2);
 
-            if (buttonGap < 2) {
-                buttonGap = 2;
-                buttonHeight = Math.max(16, (available - buttonGap * 6) / 7);
+            int longButtonWidth = MathHelper.clamp(Math.round(bookWidth * 0.34F), 88, 210);
+            int buttonHeight = MathHelper.clamp(Math.round(bookHeight * 0.062F), 18, 28);
+            int smallButtonGap = Math.max(3, Math.round(bookWidth * 0.008F));
+            int shortButtonWidth = MathHelper.clamp(Math.round(longButtonWidth * 0.34F), 38, 64);
+            int optionButtonWidth = longButtonWidth - smallButtonGap - shortButtonWidth;
+            if (optionButtonWidth < 52) {
+                shortButtonWidth = Math.max(34, longButtonWidth - smallButtonGap - 52);
+                optionButtonWidth = longButtonWidth - smallButtonGap - shortButtonWidth;
             }
 
-            int lastButtonBottom = firstButtonY + buttonHeight * 7 + buttonGap * 6;
-            if (lastButtonBottom > pageBottom) {
-                firstButtonY -= lastButtonBottom - pageBottom;
+            int buttonCenterX = bookX + Math.round(bookWidth * 0.252F);
+            int pageLeft = bookX + Math.round(bookWidth * 0.080F);
+            int pageRight = bookX + Math.round(bookWidth * 0.475F);
+            int maxButtonX = Math.max(pageLeft, pageRight - longButtonWidth);
+            int buttonX = MathHelper.clamp(buttonCenterX - longButtonWidth / 2, pageLeft, maxButtonX);
+
+            int firstButtonY = bookY + Math.round(bookHeight * 0.108F);
+            int pageBottom = bookY + Math.round(bookHeight * 0.820F);
+            int available = Math.max(buttonHeight * 7 + 12, pageBottom - firstButtonY);
+            int maxGap = Math.max(4, Math.round(bookHeight * 0.044F));
+            int buttonGap = MathHelper.clamp((available - buttonHeight * 7) / 6, 4, Math.min(16, maxGap));
+            int buttonsHeight = buttonHeight * 7 + buttonGap * 6;
+            if (firstButtonY + buttonsHeight > pageBottom) {
+                firstButtonY = Math.max(bookY + Math.round(bookHeight * 0.075F), pageBottom - buttonsHeight);
             }
 
-            return new Layout(logoX, logoY, logoSize, bookX, bookY, bookWidth, bookHeight, buttonX, firstButtonY,
-                    longButtonWidth, shortButtonWidth, buttonHeight, buttonGap, smallButtonGap, optionRowWidth);
+            return new Layout(bookX, bookY, bookWidth, bookHeight, buttonX, firstButtonY, longButtonWidth,
+                    optionButtonWidth, shortButtonWidth, buttonHeight, buttonGap, smallButtonGap);
         }
     }
 }
